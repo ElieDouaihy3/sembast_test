@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sembast_test/controllers/AddController.dart';
@@ -50,12 +52,31 @@ class AddPage extends StatelessWidget {
                               return Row(
                                 children: [
                                   SizedBox(width:100.0,child: Text("${e.key} :")),
-                                  Flexible(child:TextField(
+                                  (e.key!="image")?Flexible(child:TextField(
                                     controller:formsTECLst[i][e.key],
                                     onChanged:(value){
                                       formsLst[i][e.key]=value;
                                     },
-                                  ))
+                                  )):Column(
+                                    children: [
+                                      TextButton(
+                                        child:const Text(
+                                            "Choose Image"
+                                        ),
+                                        onPressed:(){
+                                          controller.chooseImage(e.key,i);
+                                        },
+                                      ),
+                                      (e.value=="")?const Text(
+                                        "No Image"
+                                      ):Image.memory(
+                                          base64Decode(e.value.toString()),
+                                          width:100,
+                                          height:100,
+                                      )
+
+                                    ],
+                                  )
                                 ],
                               );
                             }).toList(),

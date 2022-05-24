@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sembast_test/controllers/ShowDataController.dart';
@@ -51,8 +53,12 @@ class ShowDataPage extends StatelessWidget {
                                     Column(
                                       crossAxisAlignment:CrossAxisAlignment.start,
                                       children:showDataController.DataLst[i].value.entries.map<Widget>((e){
-                                        return Text(
+                                        return (e.key!="image")?Text(
                                             "${e.key}:${e.value}"
+                                        ):Image.memory(
+                                          base64Decode(e.value.toString()),
+                                          width:100,
+                                          height:100,
                                         );
                                       }).toList(),
                                     ),
