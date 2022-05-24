@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sembast_test/pages/AddPage.dart';
+import 'package:sembast_test/pages/AppListing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AddPage()
+      home:AppListingPage()
+      // const AddPage()
     );
   }
 }
