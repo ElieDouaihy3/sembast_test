@@ -1,5 +1,6 @@
 class MobileAppData {
   String? id,label,typeLabel,description,icon;
+  Map? subItems;
 
   MobileAppData({
     this.id,
@@ -7,6 +8,7 @@ class MobileAppData {
     this.typeLabel,
     this.description,
     this.icon,
+    this.subItems
   });
 
   Map<String, dynamic> toMap() {
@@ -26,5 +28,6 @@ class MobileAppData {
     typeLabel    = map['TypeLabel']["\$"];
     description  = map['Description']["\$"];
     icon         = map['Icon']["\$"];
+    subItems     = map['SubItems'];
   }
 }

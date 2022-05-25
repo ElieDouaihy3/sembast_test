@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sembast_test/controllers/AppListingController.dart';
 import 'package:sembast_test/global/global.dart';
 import 'package:sembast_test/models/mobile_app_data_model.dart';
+import 'package:sembast_test/pages/AppInfo.dart';
 
 class AppListingPage extends StatelessWidget {
 
@@ -17,7 +18,10 @@ class AppListingPage extends StatelessWidget {
         itemBuilder:(context,i){
           return ListTile(
             onTap:(){
-
+              Get.to(()=>MainApplicationInfo(
+                mobileAppData     : dataList[i],
+                mobileAppDataList : dataList   ,
+              ));
             },
             leading:SizedBox(
               width:55.0,
@@ -67,7 +71,6 @@ class AppListingPage extends StatelessWidget {
                   ),
                 )
             ),
-
           ],
         )
     );
@@ -81,8 +84,8 @@ class AppListingPage extends StatelessWidget {
     return SafeArea(
       child:Scaffold(
         body:Container(
-            width:Get.width,
-            height:Get.height,
+            width:MediaQuery.of(context).size.width,
+            height:MediaQuery.of(context).size.height,
             decoration:const BoxDecoration(
               image:DecorationImage(
                   image:AssetImage("assets/AppPage_Background.jpg"),

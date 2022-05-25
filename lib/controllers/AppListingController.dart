@@ -35,20 +35,20 @@ class AppListingPageController extends GetxController with GetSingleTickerProvid
 
   //Function That Get Apps To The Logged In User
   Future<List<MobileAppData>> getDataFunction() async {
-    String cookie = await loginFunction();
+    globalCookie = await loginFunction();
     String url = "$baseUrl/Mobile/ReadSubItems.aspx";
     print(url);
     http.Response response = await http.get(
         Uri.parse(url),
         headers:<String,String>{
-          "Cookie": cookie
+          "Cookie": globalCookie
         }
     );
     print(response.body);
     final Xml2Json myTransformer = Xml2Json();
     myTransformer.parse(response.body);
-    String XML = myTransformer.toBadgerfish();
-    var map = jsonDecode(XML)["Item"]["SubItems"]["Item"];
+    String xml = myTransformer.toBadgerfish();
+    var map = jsonDecode(xml)["Item"]["SubItems"]["Item"];
     List<MobileAppData> dataList = [];
     for(int i=0;i<map.length;i++){
       dataList.add(MobileAppData.fromMap(map[i]));
